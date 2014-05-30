@@ -1,5 +1,0 @@
-para cambios menores y levantar el server:
-mvn tomcat7:run
-
-para cambios de configuracion:
-mvn clean install -DskipTests
