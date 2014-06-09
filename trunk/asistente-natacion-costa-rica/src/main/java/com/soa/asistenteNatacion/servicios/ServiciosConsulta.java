@@ -5,8 +5,8 @@
  */
 package com.soa.asistenteNatacion.servicios;
 
-import com.soa.asistenteNatacion.modelos.EntrenamientoDTO;
-import com.soa.asistenteNatacion.modelos.NadadorDTO;
+import com.soa.asistenteNatacion.modelos.Entrenamiento;
+import com.soa.asistenteNatacion.modelos.Nadador;
 import com.soa.asistenteNatacion.negocios.Prueba;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +41,7 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaEntrenamiento(HttpServletRequest request, @RequestBody EntrenamientoDTO entrenamientoDTO) {
+    public ResponseEntity consultaEntrenamiento(HttpServletRequest request, @RequestBody Entrenamiento entrenamientoDTO) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
@@ -72,7 +72,7 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaNadador(HttpServletRequest request, @RequestBody NadadorDTO nadadorDTO) {
+    public ResponseEntity consultaNadador(HttpServletRequest request, @RequestBody Nadador nadadorDTO) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
@@ -103,7 +103,7 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaNadadorPrueba(HttpServletRequest request, @RequestBody NadadorDTO nadadorDTO) {
+    public ResponseEntity consultaNadadorPrueba(HttpServletRequest request, @RequestBody Nadador nadadorDTO) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
