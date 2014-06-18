@@ -41,12 +41,12 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaEntrenamiento(HttpServletRequest request, @RequestBody Entrenamiento entrenamientoDTO) {
+    public ResponseEntity consultaEntrenamiento(HttpServletRequest request, @RequestBody Entrenamiento entrenamiento) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
         result.add("nombre", prueba.hola());
-        result.add("id", entrenamientoDTO.getId());
+        result.add("id",  Integer.toString(entrenamiento.getId()));
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
         // model.addAttribute("message", "Spring 3 MVC Hello World");
@@ -72,12 +72,12 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaNadador(HttpServletRequest request, @RequestBody Nadador nadadorDTO) {
+    public ResponseEntity consultaNadador(HttpServletRequest request, @RequestBody Nadador nadador) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", nadadorDTO.getName());
-        result.add("id", nadadorDTO.getId());
+        result.add("nombre", nadador.getNombre());
+        result.add("id", Integer.toString(nadador.getId()));
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
         // model.addAttribute("message", "Spring 3 MVC Hello World");
@@ -103,12 +103,12 @@ public class ServiciosConsulta {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity consultaNadadorPrueba(HttpServletRequest request, @RequestBody Nadador nadadorDTO) {
+    public ResponseEntity consultaNadadorPrueba(HttpServletRequest request, @RequestBody Nadador nadador) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", nadadorDTO.getName());
-        result.add("id", nadadorDTO.getId());
+        result.add("nombre", nadador.getNombre());
+        result.add("id", Integer.toString(nadador.getId()));
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
         // model.addAttribute("message", "Spring 3 MVC Hello World");
