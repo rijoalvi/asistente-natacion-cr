@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.soa.asistenteNatacion.negocios;
+package com.soa.asistenteNatacion.servicios;
 
 import org.springframework.stereotype.Service;
 

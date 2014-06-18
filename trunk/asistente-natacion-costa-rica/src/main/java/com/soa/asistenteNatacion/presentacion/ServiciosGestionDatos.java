@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-package com.soa.asistenteNatacion.servicios;
+package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Nadador;
-import com.soa.asistenteNatacion.negocios.Prueba;
+import com.soa.asistenteNatacion.servicios.Prueba;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
