@@ -1,4 +1,4 @@
-package com.soa.asistenteNatacion.servicios;
+package com.soa.asistenteNatacion.presentacion;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
