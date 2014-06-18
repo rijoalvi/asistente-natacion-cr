@@ -12,13 +12,12 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring.version>3.1.1.RELEASE</spring.version>
+        <spring.version>4.0.5.RELEASE</spring.version>
         <jackson-mapper-asl.version>1.9.9</jackson-mapper-asl.version>
         
         <!-- Hibernate properties -->
         <hibernate.version>4.3.5.Final</hibernate.version>
         <hibernate.dialect>org.hibernate.dialect.MySQL5InnoDBDialect</hibernate.dialect>
-        <hibernate-search.version>3.4.1.Final</hibernate-search.version>
     </properties>
     
     <dependencies>
@@ -55,6 +54,18 @@
             <version>${spring.version}</version>
         </dependency>
         
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
         <!--Hibernate Dependencies-->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -63,27 +74,22 @@
         </dependency>
         
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-c3p0</artifactId>
-            <version>${hibernate.version}</version>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.18.1-GA</version>
         </dependency>
-
+        
+        <!--MySQL Dependencies-->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-ehcache</artifactId>
-            <version>${hibernate.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.30</version>
+            <scope>runtime</scope>
         </dependency>
-
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-search</artifactId>
-            <version>${hibernate-search.version}</version>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.52</version>
         </dependency>
         
     </dependencies>
