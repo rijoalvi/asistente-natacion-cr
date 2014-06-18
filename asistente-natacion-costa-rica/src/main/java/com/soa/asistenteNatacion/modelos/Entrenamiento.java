@@ -2,30 +2,37 @@ package com.soa.asistenteNatacion.modelos;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author r.alvarado
  */
-public class Entrenamiento implements Serializable{
+
+@Entity
+@Table(name = "entrenamiento")
+public class Entrenamiento {
     
-    private String id;
-    private String id_equipo;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+    
+    @Column(name = "id_equipo")
+    private int id_equipo;
+    
+    @Column(name = "fecha")
     private Date fecha;
-    private Prueba[] pruebas;
 
-    public Entrenamiento(String id, String id_equipo, Date fecha, Prueba[] pruebas) {
-        this.id = id;
-        this.id_equipo = id_equipo;
-        this.fecha = fecha;
-        this.pruebas = pruebas;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public String getId_equipo() {
+    public int getId_equipo() {
         return id_equipo;
     }
 
@@ -33,29 +40,16 @@ public class Entrenamiento implements Serializable{
         return fecha;
     }
 
-    public Prueba[] getPruebas() {
-        return pruebas;
-    }
-
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public void setId_equipo(String id_equipo) {
+    public void setId_equipo(int id_equipo) {
         this.id_equipo = id_equipo;
     }
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public void setPruebas(Prueba[] pruebas) {
-        this.pruebas = pruebas;
-    }
-
-    @Override
-    public String toString() {
-        return "Entrenamiento{" + "id=" + id + ", id_equipo=" + id_equipo + ", fecha=" + fecha + ", pruebas=" + pruebas + '}';
     }
     
 }
