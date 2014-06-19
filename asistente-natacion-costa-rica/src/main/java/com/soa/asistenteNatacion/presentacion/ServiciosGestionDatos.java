@@ -8,6 +8,8 @@ package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Nadador;
+import com.soa.asistenteNatacion.modelos.Usuario;
+import com.soa.asistenteNatacion.servicios.AdministradorUsuarios;
 import com.soa.asistenteNatacion.servicios.Prueba;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +37,9 @@ public class ServiciosGestionDatos {
     private final static Logger LOGGER = Logger.getLogger(ServiciosConsulta.class.getName());
     @Autowired
     Prueba prueba;
-
+    
+    @Autowired
+    private AdministradorUsuarios administradorUsuarios;
     
     /************************Seccion de gestion de entrenamiento*********************************/
     @RequestMapping(value = "/entrenamiento",
@@ -104,12 +109,14 @@ public class ServiciosGestionDatos {
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity gestionUsuario(HttpServletRequest request, @RequestBody Nadador nadador) {
+    public ResponseEntity gestionUsuario(HttpServletRequest request, @RequestBody Usuario usuario) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", nadador.getNombre());
-        result.add("id", Integer.toString(nadador.getId()));
+        administradorUsuarios.guardarUsuario(usuario);
+	System.out.println("Usuario Guardado!!!");
+        result.add("nombre", usuario.getNombre());
+        //result.add("id", Integer.toString(nadador.getId()));
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
         // model.addAttribute("message", "Spring 3 MVC Hello World");
@@ -120,7 +127,7 @@ public class ServiciosGestionDatos {
                     method = RequestMethod.GET)
     public ModelAndView descripcionGestionUsuario(ModelMap model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vista_descripcion_servicio");
+        modelAndView.setViewName("vista_prueba_insercion_usuario");
         modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo /nadador/prueba");
         return modelAndView;
         // model.addAttribute("message", "Spring 3 MVC Hello World");
