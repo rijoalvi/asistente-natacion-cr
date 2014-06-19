@@ -7,18 +7,22 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="
             http://www.springframework.org/schema/beans
-            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
             http://www.springframework.org/schema/context
-            http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+            http://www.springframework.org/schema/context/spring-context-4.0.xsd
             http://www.springframework.org/schema/mvc
-            http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+            http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
             http://www.springframework.org/schema/security
-            http://www.springframework.org/schema/security/spring-security-3.1.xsd 
+            http://www.springframework.org/schema/security/spring-security-3.2.xsd 
             http://www.springframework.org/schema/aop 
-            http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+            http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
  
     <context:property-placeholder location="classpath:jdbc.properties" />
     <context:component-scan base-package="com.soa.asistenteNatacion" />
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
  
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">
@@ -29,7 +33,8 @@
         </property>
     </bean>
     
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory" 
+     class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan" value="com.soa.asistenteNatacion.modelos" />
         <property name="hibernateProperties">
@@ -40,7 +45,7 @@
         </property>
     </bean>
     
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.apache.tomcat.dbcp.dbcp.BasicDataSource">
         <property name="driverClassName" value="${database.driver}" />
         <property name="url" value="${database.url}" />
         <property name="username" value="${database.user}" />
