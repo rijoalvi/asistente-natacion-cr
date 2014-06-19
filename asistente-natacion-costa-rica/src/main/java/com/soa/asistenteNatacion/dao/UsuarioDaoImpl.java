@@ -3,35 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.soa.asistenteNatacion.dao;
 
 import com.soa.asistenteNatacion.modelos.Usuario;
 import java.util.List;
+import java.util.logging.Logger;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author r.alvarado
  */
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
 @Repository("usuarioDao")
 public class UsuarioDaoImpl implements UsuarioDao {
-
+    
+    private final static Logger LOGGER = Logger.getLogger(UsuarioDaoImpl.class.getName());
     @Autowired
     private SessionFactory sessionfactory;
-    
+
     @Override
     public void guardarUsuario(Usuario usuario) {
+        LOGGER.info("antes de mameluquear");
+        LOGGER.info(sessionfactory.toString());
+        LOGGER.info("antes de mameluquear2");
         sessionfactory.getCurrentSession().saveOrUpdate(usuario);
+        LOGGER.info("MAMELUCO");
     }
 
     @Override
     public List<Usuario> obtenerUsuarios() {
         @SuppressWarnings("unchecked")
-	List<Usuario> listaUsuarios = sessionfactory.getCurrentSession().createCriteria(Usuario.class).list();
-	return listaUsuarios;
+        List<Usuario> listaUsuarios = sessionfactory.getCurrentSession().createCriteria(Usuario.class).list();
+        return listaUsuarios;
     }
-
 }
