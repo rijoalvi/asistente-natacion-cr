@@ -6,13 +6,13 @@
 
 package com.soa.asistenteNatacion.servicios;
 
-import org.springframework.stereotype.Service;
-
+import com.soa.asistenteNatacion.modelos.Usuario;
+import java.util.List;
 /**
  *
  * @author rijoalvi
  */
-@Service("administradorEntrenamientos")
-public class AdministradorEntrenamientos {
-    
+public interface AdministradorUsuarios {
+    public void guardarUsuario(Usuario usuario);
+    public List<Usuario> obtenerUsuarios();
 }
