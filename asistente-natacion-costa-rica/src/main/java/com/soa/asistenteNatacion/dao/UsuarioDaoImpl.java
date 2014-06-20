@@ -31,8 +31,15 @@ public class UsuarioDaoImpl implements UsuarioDao {
         LOGGER.info("antes de mameluquear");
         LOGGER.info(sessionfactory.toString());
         LOGGER.info("antes de mameluquear2");
-        sessionfactory.getCurrentSession().saveOrUpdate(usuario);
-        LOGGER.info("MAMELUCO");
+        try {
+            sessionfactory.getCurrentSession();
+        }
+        catch(Exception e) {
+            //sessionfactory.openSession();
+            LOGGER.info("abri sesion");
+        }
+        sessionfactory.openSession().saveOrUpdate(usuario);
+        LOGGER.info("NO MAMELUCO");
     }
 
     @Override

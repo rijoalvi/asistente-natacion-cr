@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `asistente_natacion_cr` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `asistente_natacion_cr`;
--- MySQL dump 10.13  Distrib 5.6.13, for osx10.6 (i386)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: asistente_natacion_cr
+-- Host: localhost    Database: asistente_natacion_cr
 -- ------------------------------------------------------
--- Server version	5.6.19
+-- Server version	5.5.24-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -168,9 +168,8 @@ CREATE TABLE `usuario` (
   `id_nadador` int(11) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `usuario_nadador_idx` (`id_nadador`),
-  CONSTRAINT `usuario_nadador` FOREIGN KEY (`id_nadador`) REFERENCES `nadador` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  KEY `usuario_nadador_idx` (`id_nadador`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -179,6 +178,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (2,'rijoalvi','88','Alvarado Villalobos','rijoalvi@gmail.com',1,0,'Ricardo');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-19 19:39:28
+-- Dump completed on 2014-06-20 17:41:35
