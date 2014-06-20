@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author r.alvarado
  */
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
 @Repository("usuarioDao")
 public class UsuarioDaoImpl implements UsuarioDao {
     
