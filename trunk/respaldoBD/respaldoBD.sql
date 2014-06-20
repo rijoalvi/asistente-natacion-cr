@@ -133,12 +133,12 @@ CREATE TABLE `tiempo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_prueba` int(11) NOT NULL,
   `id_nadador` int(11) NOT NULL,
-  `tiempo` time NOT NULL,
+  `tiempo` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tiempo_prueba_idx` (`id_prueba`),
   KEY `tiempo_nadador_idx` (`id_nadador`),
-  CONSTRAINT `tiempo_prueba` FOREIGN KEY (`id_prueba`) REFERENCES `prueba` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `tiempo_nadador` FOREIGN KEY (`id_nadador`) REFERENCES `nadador` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+  CONSTRAINT `tiempo_nadador` FOREIGN KEY (`id_nadador`) REFERENCES `nadador` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `tiempo_prueba` FOREIGN KEY (`id_prueba`) REFERENCES `prueba` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -217,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-17 18:12:17
+-- Dump completed on 2014-06-19 19:39:28
