@@ -19,19 +19,21 @@ import org.springframework.transaction.annotation.Transactional;
  * @author rijoalvi
  */
 
-@Service
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
+@Service("administradorUsuarios")
+@Transactional
 public class AdministradorUsuariosImpl implements AdministradorUsuarios{
 
     @Autowired
     UsuarioDao usuarioDao;
     
     @Override
+    @Transactional(readOnly = true)
     public void guardarUsuario(Usuario usuario) {
         usuarioDao.guardarUsuario(usuario);
     }
 
     @Override
+    @Transactional(readOnly = false)
     public List<Usuario> obtenerUsuarios() {
         return usuarioDao.obtenerUsuarios();
     }
