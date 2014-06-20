@@ -9,4 +9,4 @@ para mysql instalar mysql 5.6.19 ( http://dev.mysql.com/get/Downloads/MySQLInsta
 URL de prueba:
 http://localhost:8080/gestion/usuario
 
-GRANT ALL PRIVILEGES on asistente_natacion_cr.* to 'admin'@'localhost' identified by 'admintiempo';
+GRANT ALL PRIVILEGES on asistente_natacion_cr.* to 'admin'@'localhost' identified by 'admin';
