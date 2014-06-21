@@ -6,7 +6,13 @@ mvn clean install -DskipTests
 
 para mysql instalar mysql 5.6.19 ( http://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.6.19.0.msi )
 
+
+
+
 URL de prueba:
 http://localhost:8080/gestion/usuario
+
+
+
 
 GRANT ALL PRIVILEGES on asistente_natacion_cr.* to 'admin'@'localhost' identified by 'admin';
