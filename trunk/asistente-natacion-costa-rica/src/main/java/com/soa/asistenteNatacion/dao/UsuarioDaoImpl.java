@@ -45,7 +45,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     @Override
     public List<Usuario> obtenerUsuarios() {
         @SuppressWarnings("unchecked")
-        List<Usuario> listaUsuarios = sessionfactory.getCurrentSession().createCriteria(Usuario.class).list();
+        List<Usuario> listaUsuarios = sessionfactory.openSession().createCriteria(Usuario.class).list();
         return listaUsuarios;
     }
 }

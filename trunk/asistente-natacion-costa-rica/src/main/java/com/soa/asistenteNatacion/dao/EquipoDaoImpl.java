@@ -31,13 +31,13 @@ public class EquipoDaoImpl implements EquipoDao{
     @Override
     public List<Equipo> obtenerEquipos() {
         @SuppressWarnings("unchecked")
-        List<Equipo> listaEquipos = sessionfactory.getCurrentSession().createCriteria(Equipo.class).list();
+        List<Equipo> listaEquipos = sessionfactory.openSession().createCriteria(Equipo.class).list();
         return listaEquipos;
     }
 
     @Override
     public void guardarEquipo(Equipo equipo) {
-        sessionfactory.getCurrentSession().saveOrUpdate(equipo);
+        sessionfactory.openSession().saveOrUpdate(equipo);
     }
 
 }
