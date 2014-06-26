@@ -31,13 +31,13 @@ public class NadadorDaoImpl implements NadadorDao{
     
     @Override
     public void guardarNadador(Nadador nadador) {
-        sessionfactory.getCurrentSession().saveOrUpdate(nadador);
+        sessionfactory.openSession().saveOrUpdate(nadador);
     }
     
     @Override
     public List<Nadador> obtenerNadadores() {
         @SuppressWarnings("unchecked")
-        List<Nadador> lista = sessionfactory.getCurrentSession().createCriteria(Nadador.class).list();
+        List<Nadador> lista = sessionfactory.openSession().createCriteria(Nadador.class).list();
         return lista;
     }
 

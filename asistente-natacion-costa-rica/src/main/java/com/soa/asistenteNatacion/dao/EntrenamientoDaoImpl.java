@@ -31,13 +31,13 @@ public class EntrenamientoDaoImpl implements EntrenamientoDao{
     
     @Override
     public void guardarEntrenamiento(Entrenamiento entrenamiento) {
-        sessionfactory.getCurrentSession().saveOrUpdate(entrenamiento);
+        sessionfactory.openSession().saveOrUpdate(entrenamiento);
     }
     
         @Override
     public List<Entrenamiento> obtenerEntrenamientos() {
         @SuppressWarnings("unchecked")
-        List<Entrenamiento> listaEntrenamientos = sessionfactory.getCurrentSession().createCriteria(Entrenamiento.class).list();
+        List<Entrenamiento> listaEntrenamientos = sessionfactory.openSession().createCriteria(Entrenamiento.class).list();
         return listaEntrenamientos;
     }
 

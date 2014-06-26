@@ -30,13 +30,13 @@ public class PruebaDaoImpl implements PruebaDao{
     
     @Override
     public void guardarPrueba(Prueba prueba) {
-        sessionfactory.getCurrentSession().saveOrUpdate(prueba);
+        sessionfactory.openSession().saveOrUpdate(prueba);
     }
     
     @Override
     public List<Prueba> obtenerPruebas() {
         @SuppressWarnings("unchecked")
-        List<Prueba> lista = sessionfactory.getCurrentSession().createCriteria(Prueba.class).list();
+        List<Prueba> lista = sessionfactory.openSession().createCriteria(Prueba.class).list();
         return lista;
     }
 

@@ -31,13 +31,13 @@ public class TiempoDaoImpl implements TiempoDao{
     
     @Override
     public void guardarTiempo(Tiempo tiempo) {
-        sessionfactory.getCurrentSession().saveOrUpdate(tiempo);
+        sessionfactory.openSession().saveOrUpdate(tiempo);
     }
     
         @Override
     public List<Tiempo> obtenerTiempos() {
         @SuppressWarnings("unchecked")
-        List<Tiempo> lista = sessionfactory.getCurrentSession().createCriteria(Tiempo.class).list();
+        List<Tiempo> lista = sessionfactory.openSession().createCriteria(Tiempo.class).list();
         return lista;
     }
 
