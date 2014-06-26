@@ -28,6 +28,9 @@ public class Equipo {
     
     @Column(name = "nombre")
     private String nombre;
+    
+    @Column(name = "id_equipo")
+    private int id_equipo;
 
     public int getId() {
         return id;
@@ -44,4 +47,13 @@ public class Equipo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public int getId_equipo() {
+        return id_equipo;
+    }
+
+    public void setId_equipo(int id_equipo) {
+        this.id_equipo = id_equipo;
+    }
+    
 }
