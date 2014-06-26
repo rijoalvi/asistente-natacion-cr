@@ -46,6 +46,15 @@ public class Usuario {
     
     @Column(name = "id_nadador")
     private int id_nadador;
+    
+    @Column(name = "edad")
+    private int edad;
+    
+    @Column(name = "categoria")
+    private int categoria;
+    
+    @Column(name = "especialidad")
+    private int especialidad;
 
     public int getId() {
         return id;
@@ -79,6 +88,18 @@ public class Usuario {
         return id_nadador;
     }
 
+    public int getEdad() {
+        return edad;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public int getEspecialidad() {
+        return especialidad;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -110,4 +131,17 @@ public class Usuario {
     public void setId_nadador(int id_nadador) {
         this.id_nadador = id_nadador;
     }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setEspecialidad(int especialidad) {
+        this.especialidad = especialidad;
+    }
+    
 }
