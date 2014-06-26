@@ -6,7 +6,6 @@
 package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
-import com.soa.asistenteNatacion.modelos.Nadador;
 import com.soa.asistenteNatacion.servicios.Prueba;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -65,39 +64,8 @@ public class ServiciosConsulta {
     }
     /*********************************************************************************************/
     
-    /******************************Seccion de consulta de nadador*********************************/
-    
-    @RequestMapping(value = "/nadador",
-                    method = RequestMethod.POST,
-                    headers = "Accept=application/json",
-                    produces = "application/json",
-                    consumes = "application/json")
-    public ResponseEntity consultaNadador(HttpServletRequest request, @RequestBody Nadador nadador) {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
-        headers.add("Access-Control-Allow-Origin", "*");
-        MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", nadador.getNombre());
-        result.add("id", Integer.toString(nadador.getId()));
-
-        return new ResponseEntity(result, headers, HttpStatus.OK);
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
-    }
-
-    @RequestMapping(value = "/nadador",
-                    method = RequestMethod.GET)
-    public ModelAndView descripcionConsultaNadador(ModelMap model) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vista_descripcion_servicio");
-        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo /nadador");
-        return modelAndView;
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
-    }
-    /*********************************************************************************************/
-    
     /************************Seccion de consulta de nadador por prueba****************************/
-    
+   /* 
     @RequestMapping(value = "/nadador/prueba",
                     method = RequestMethod.POST,
                     headers = "Accept=application/json",
@@ -124,5 +92,5 @@ public class ServiciosConsulta {
         return modelAndView;
         // model.addAttribute("message", "Spring 3 MVC Hello World");
         //return "hello";
-    }
+    }*/
 }

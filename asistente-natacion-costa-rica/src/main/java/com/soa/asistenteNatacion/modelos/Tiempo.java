@@ -34,6 +34,12 @@ public class Tiempo {
     
     @Column(name = "tiempo")
     private Date tiempo;
+    
+    @Column(name = "distancia_prueba")
+    private int distancia_prueba;
+    
+    @Column(name = "estilo_prueba")
+    private int estilo_prueba;
 
     public int getId() {
         return id;
@@ -49,6 +55,13 @@ public class Tiempo {
 
     public Date getTiempo() {
         return tiempo;
+    }
+    public int getDistancia_prueba() {
+        return distancia_prueba;
+    }
+
+    public int getEstilo_prueba() {
+        return estilo_prueba;
     }
 
     public void setId(int id) {
@@ -66,4 +79,15 @@ public class Tiempo {
     public void setTiempo(Date tiempo) {
         this.tiempo = tiempo;
     }
+
+    public void setDistancia_prueba(int distancia_prueba) {
+        this.distancia_prueba = distancia_prueba;
+    }
+
+    public void setEstilo_prueba(int estilo_prueba) {
+        this.estilo_prueba = estilo_prueba;
+    }
+
+
+    
 }
