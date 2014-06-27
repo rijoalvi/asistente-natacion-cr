@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ricardo</title>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="/recursos/js/richard2.js"></script>
+        <script src="/recursos/js/insercionUsuario.js"></script>
     </head>
     <body>
         <h1>Message : ${message}</h1>	

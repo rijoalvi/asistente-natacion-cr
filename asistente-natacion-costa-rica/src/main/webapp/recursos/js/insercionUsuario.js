@@ -5,7 +5,10 @@ var data = {
     'apellidos': 'Alvarado Villalobos',
     'email': 'rijoalvi@gmail.com',
     'tipo': 1,
-    'id_nadador': 0
+    'id_nadador': 0,
+    'edad': 15,
+    'categoria': 3,
+    'especialidad': 2
 };
 this.datos = {};
 $(document).ready(function() {
