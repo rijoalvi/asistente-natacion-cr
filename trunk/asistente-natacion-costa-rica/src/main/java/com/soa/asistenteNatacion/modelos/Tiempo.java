@@ -29,8 +29,8 @@ public class Tiempo {
     @Column(name = "id_prueba")
     private int id_prueba;
     
-    @Column(name = "id_nadador")
-    private int id_nadador;
+    @Column(name = "id_usuario")
+    private int id_usuario;
     
     @Column(name = "tiempo")
     private Date tiempo;
@@ -49,8 +49,8 @@ public class Tiempo {
         return id_prueba;
     }
 
-    public int getId_nadador() {
-        return id_nadador;
+    public int getId_usuario() {
+        return id_usuario;
     }
 
     public Date getTiempo() {
@@ -72,8 +72,8 @@ public class Tiempo {
         this.id_prueba = id_prueba;
     }
 
-    public void setId_nadador(int id_nadador) {
-        this.id_nadador = id_nadador;
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public void setTiempo(Date tiempo) {
