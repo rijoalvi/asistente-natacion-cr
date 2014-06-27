@@ -8,8 +8,11 @@ package com.soa.asistenteNatacion.dao;
 import com.soa.asistenteNatacion.modelos.Usuario;
 import java.util.List;
 import java.util.logging.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.hibernate.criterion.Expression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -47,5 +50,18 @@ public class UsuarioDaoImpl implements UsuarioDao {
         @SuppressWarnings("unchecked")
         List<Usuario> listaUsuarios = sessionfactory.openSession().createCriteria(Usuario.class).list();
         return listaUsuarios;
+    }
+    
+    @Override
+    public Usuario obtenerUsuario(String usuario, String contrasena) {
+        Criteria c = sessionfactory.openSession().createCriteria(Usuario.class);
+        if(usuario!=null){
+		c.add(Restrictions.eq("nombre_usuario",usuario));
+	}
+	if(contrasena!=null){
+		c.add(Restrictions.eq("contrasena",contrasena));
+	}
+        Usuario usuarioResp = (Usuario) c.uniqueResult();
+        return usuarioResp;
     }
 }
