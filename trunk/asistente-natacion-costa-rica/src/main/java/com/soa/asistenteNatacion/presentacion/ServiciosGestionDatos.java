@@ -10,6 +10,8 @@ import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Usuario;
 import com.soa.asistenteNatacion.servicios.AdministradorUsuarios;
 import com.soa.asistenteNatacion.servicios.Prueba;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -125,9 +127,41 @@ public class ServiciosGestionDatos {
     @RequestMapping(value = "/usuario",
                     method = RequestMethod.GET)
     public ModelAndView descripcionGestionUsuario(ModelMap model) {
+        List<String> listaProps = new ArrayList<String>();
+        listaProps.add("nombre_usuario");
+        listaProps.add("contrasena");
+        listaProps.add("nombre");
+        listaProps.add("apellidos");
+        listaProps.add("email");
+        listaProps.add("tipo");
+        listaProps.add("edad");
+        listaProps.add("categoria");
+        listaProps.add("especialidad");
+        
+        List<String> listaejemplo = new ArrayList<String>();
+        listaejemplo.add("{ nombre_usuario: juancho,");
+        listaejemplo.add("  contrasena: Azul1925,");
+        listaejemplo.add("  nombre: Juan,");
+        listaejemplo.add("  apellidos: Alvarado Villalobos,");
+        listaejemplo.add("  email: rijoalvi@gmail.com,");
+        listaejemplo.add("  tipo: 1,");
+        listaejemplo.add("  edad: 15,");
+        listaejemplo.add("  categoria: 3,");
+        listaejemplo.add("  especialidad: 2 }");
+        
+        String titulo = "Inserci&oacute;n de usuarios";
+        String descr1 = "para insertar un usuario, debe enviar mediante POST un objeto con los siguientes elementos:";
+        String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("vista_prueba_insercion_usuario");
-        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo /nadador/prueba");
+        modelAndView.addObject("titulo", titulo);
+        modelAndView.addObject("descripcion1", descr1);
+        modelAndView.addObject("listaDescripcion", listaProps);
+        modelAndView.addObject("descripcion2", descr2);
+        modelAndView.addObject("listaEjemplos", listaejemplo);
+
+        
+        
         return modelAndView;
         // model.addAttribute("message", "Spring 3 MVC Hello World");
         //return "hello";
