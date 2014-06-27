@@ -55,7 +55,7 @@ CREATE TABLE `equipo` (
   `nombre` varchar(45) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +64,7 @@ CREATE TABLE `equipo` (
 
 LOCK TABLES `equipo` WRITE;
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
+INSERT INTO `equipo` VALUES (2,'ANAHE',1),(5,'ANAHE',1);
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -141,14 +142,14 @@ CREATE TABLE `usuario` (
   `apellidos` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
-  `id_nadador` int(11) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
   `edad` int(11) DEFAULT NULL,
   `categoria` int(11) DEFAULT NULL,
   `especialidad` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `usuario_nadador_idx` (`id_nadador`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `nombre_usuario_UNIQUE` (`nombre_usuario`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +158,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'rijoalvi','88','Alvarado Villalobos','rijoalvi@gmail.com',1,'Ricardo',15,3,2);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -169,4 +171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-25 20:28:14
+-- Dump completed on 2014-06-27  0:42:05
