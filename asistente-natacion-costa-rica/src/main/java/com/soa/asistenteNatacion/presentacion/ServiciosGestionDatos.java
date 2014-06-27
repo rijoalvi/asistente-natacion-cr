@@ -7,7 +7,9 @@
 package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
+import com.soa.asistenteNatacion.modelos.Equipo;
 import com.soa.asistenteNatacion.modelos.Usuario;
+import com.soa.asistenteNatacion.servicios.AdministradorEquipos;
 import com.soa.asistenteNatacion.servicios.AdministradorUsuarios;
 import com.soa.asistenteNatacion.servicios.Prueba;
 import java.util.ArrayList;
@@ -41,6 +43,9 @@ public class ServiciosGestionDatos {
     
     @Autowired
     private AdministradorUsuarios administradorUsuarios;
+    
+    @Autowired
+    private AdministradorEquipos administradorEquipos;
     
     /************************Seccion de gestion de entrenamiento*********************************/
     @RequestMapping(value = "/entrenamiento",
@@ -103,6 +108,55 @@ public class ServiciosGestionDatos {
     }*/
     /*********************************************************************************************/
     
+    /************************Seccion de gestion de entrenamiento*********************************/
+    @RequestMapping(value = "/equipo",
+                    method = RequestMethod.POST,
+                    headers = "Accept=application/json",
+                    produces = "application/json",
+                    consumes = "application/json")
+    public ResponseEntity gestionEquipo(HttpServletRequest request, @RequestBody Equipo equipo) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Access-Control-Allow-Origin", "*");
+        MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
+        administradorEquipos.guardarEquipo(equipo);
+	System.out.println("Equipo Guardado!!!");
+        result.add("nombre", equipo.getNombre());
+
+        return new ResponseEntity(result, headers, HttpStatus.OK);
+        // model.addAttribute("message", "Spring 3 MVC Hello World");
+        //return "hello";
+    }
+
+    @RequestMapping(value = "/equipo",
+                    method = RequestMethod.GET)
+    public ModelAndView descripcionGestionEquipo(ModelMap model) {
+        List<String> listaProps = new ArrayList<String>();
+        listaProps.add("nombre");
+        listaProps.add("id_usuario");
+        
+        List<String> listaejemplo = new ArrayList<String>();
+        listaejemplo.add("{ nombre: ANAHE,");
+        listaejemplo.add("  id_usuario: 233 }");
+        
+        String titulo = "Inserci&oacute;n de Equipos";
+        String descr1 = "para insertar un Equipo, debe enviar mediante POST un objeto con los siguientes elementos:";
+        String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("vista_insercion_equipo");
+        modelAndView.addObject("titulo", titulo);
+        modelAndView.addObject("descripcion1", descr1);
+        modelAndView.addObject("listaDescripcion", listaProps);
+        modelAndView.addObject("descripcion2", descr2);
+        modelAndView.addObject("listaEjemplos", listaejemplo);
+
+        
+        
+        return modelAndView;
+        // model.addAttribute("message", "Spring 3 MVC Hello World");
+        //return "hello";
+    }
+    /*********************************************************************************************/
+    
     /************************************Seccion de gestion de usuario****************************/
     
     @RequestMapping(value = "/usuario",
@@ -153,7 +207,7 @@ public class ServiciosGestionDatos {
         String descr1 = "para insertar un usuario, debe enviar mediante POST un objeto con los siguientes elementos:";
         String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vista_prueba_insercion_usuario");
+        modelAndView.setViewName("vista_insercion_usuario");
         modelAndView.addObject("titulo", titulo);
         modelAndView.addObject("descripcion1", descr1);
         modelAndView.addObject("listaDescripcion", listaProps);
