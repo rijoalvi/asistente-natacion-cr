@@ -38,4 +38,12 @@ public class AdministradorUsuariosImpl implements AdministradorUsuarios{
         return usuarioDao.obtenerUsuarios();
     }
     
+    @Override
+    @Transactional(readOnly = false)
+    public Usuario obtenerUsuario(String usuario, String contrasena) {
+        Usuario resp = null;
+        resp =  usuarioDao.obtenerUsuario(usuario, contrasena);
+        return resp;
+    }
+    
 }

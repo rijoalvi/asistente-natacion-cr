@@ -15,4 +15,5 @@ import java.util.List;
 public interface AdministradorUsuarios {
     public void guardarUsuario(Usuario usuario);
     public List<Usuario> obtenerUsuarios();
+    public Usuario obtenerUsuario(String usuario, String contrasena);
 }

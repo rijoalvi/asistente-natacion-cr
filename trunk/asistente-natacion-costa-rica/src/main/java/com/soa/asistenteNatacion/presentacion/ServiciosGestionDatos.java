@@ -155,11 +155,7 @@ public class ServiciosGestionDatos {
         modelAndView.addObject("descripcion2", descr2);
         modelAndView.addObject("listaEjemplos", listaejemplo);
 
-        
-        
         return modelAndView;
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
     }
     /*********************************************************************************************/
     
