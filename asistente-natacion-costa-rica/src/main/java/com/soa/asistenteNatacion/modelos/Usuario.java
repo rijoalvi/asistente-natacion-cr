@@ -44,9 +44,6 @@ public class Usuario {
     @Column(name = "tipo")
     private int tipo;
     
-    @Column(name = "id_nadador")
-    private int id_nadador;
-    
     @Column(name = "edad")
     private int edad;
     
@@ -82,10 +79,6 @@ public class Usuario {
 
     public int getTipo() {
         return tipo;
-    }
-
-    public int getId_nadador() {
-        return id_nadador;
     }
 
     public int getEdad() {
@@ -126,10 +119,6 @@ public class Usuario {
 
     public void setTipo(int tipo) {
         this.tipo = tipo;
-    }
-
-    public void setId_nadador(int id_nadador) {
-        this.id_nadador = id_nadador;
     }
 
     public void setEdad(int edad) {

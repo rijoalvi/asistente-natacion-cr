@@ -3,7 +3,7 @@
     Created on : May 8, 2014, 10:17:30 AM
     Author     : r.alvarado
 --%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,22 @@
         <script src="/recursos/js/insercionUsuario.js"></script>
     </head>
     <body>
-        <h1>Message : ${message}</h1>	
+        <h1>${titulo}</h1>
+        <p>${descripcion1}</p>
+        <c:if test="${not empty listaDescripcion}">
+            <ul>
+        	<c:forEach var="elemLista" items="${listaDescripcion}">
+                    <li>${elemLista}</li>
+		</c:forEach>
+            </ul>
+	</c:if>
+        <p>${descripcion2}</p>
+        <c:if test="${not empty listaEjemplos}">
+            <p>
+        	<c:forEach var="elemLista" items="${listaEjemplos}">
+                    ${elemLista}<br />&nbsp;&nbsp;
+		</c:forEach>
+            </p>
+	</c:if>
     </body>
 </html>
