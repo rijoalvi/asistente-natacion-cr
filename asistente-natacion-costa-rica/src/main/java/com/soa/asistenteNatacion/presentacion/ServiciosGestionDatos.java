@@ -10,8 +10,10 @@ import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Equipo;
 import com.soa.asistenteNatacion.modelos.Usuario;
 import com.soa.asistenteNatacion.servicios.AdministradorEquipos;
+import com.soa.asistenteNatacion.modelos.Prueba;
+import com.soa.asistenteNatacion.servicios.AdministradorPruebas;
 import com.soa.asistenteNatacion.servicios.AdministradorUsuarios;
-import com.soa.asistenteNatacion.servicios.Prueba;
+import com.soa.asistenteNatacion.servicios.AdministradorEntrenamientos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -38,14 +40,18 @@ import org.springframework.web.servlet.ModelAndView;
 public class ServiciosGestionDatos {
 
     private final static Logger LOGGER = Logger.getLogger(ServiciosConsulta.class.getName());
-    @Autowired
-    Prueba prueba;
     
     @Autowired
     private AdministradorUsuarios administradorUsuarios;
     
     @Autowired
     private AdministradorEquipos administradorEquipos;
+    
+    @Autowired
+    private AdministradorPruebas administradorPruebas;
+    
+    @Autowired
+    private AdministradorEntrenamientos administradorEntrenamientos;
     
     /************************Seccion de gestion de entrenamiento*********************************/
     @RequestMapping(value = "/entrenamiento",
@@ -57,55 +63,55 @@ public class ServiciosGestionDatos {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", prueba.hola());
-        result.add("id", Integer.toString(entrenamiento.getId()));
+        administradorEntrenamientos.guardarEntrenamiento(entrenamiento);
+	System.out.println("Intento de guardar prueba");
+        result.add("fecha", entrenamiento.getFecha().toString());
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
     }
 
     @RequestMapping(value = "/entrenamiento",
                     method = RequestMethod.GET)
     public ModelAndView descripcionGestionEntrenamiento(ModelMap model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vista_descripcion_servicio");
-        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo/entrenamiento/fecha");
+        modelAndView.setViewName("vista_insercion_entrenamiento");
+        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo/entrenamiento");
         return modelAndView;
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
     }
+    
+    
     /*********************************************************************************************/
     
     /***********************Seccion de gestion una prueba del entrenamiento***********************/
     
-   /* @RequestMapping(value = "/entrenamiento/prueba",
+    @RequestMapping(value = "/entrenamiento/prueba",
                     method = RequestMethod.POST,
                     headers = "Accept=application/json",
                     produces = "application/json",
                     consumes = "application/json")
-    public ResponseEntity gestionPruebaEntrenamiento(HttpServletRequest request, @RequestBody Nadador nadador) {
+    public ResponseEntity gestionPrueba(HttpServletRequest request, @RequestBody Prueba prueba) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", nadador.getNombre());
-        result.add("id", Integer.toString(nadador.getId()));
+        administradorPruebas.guardarPrueba(prueba);
+	System.out.println("Intento de guardar prueba");
+        result.add("tipo", prueba.getTipo());
+        
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
-        // model.addAttribute("message", "Spring 3 MVC Hello World");
-        //return "hello";
     }
+    
 
     @RequestMapping(value = "/entrenamiento/prueba",
                     method = RequestMethod.GET)
     public ModelAndView descripcionGestionPruebaEntrenamiento(ModelMap model) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("vista_descripcion_servicio");
-        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo /nadador");
+        modelAndView.setViewName("vista_insercion_prueba");
+        modelAndView.addObject("message", "Descripci&oacute;n de c&oacute;mo funciona el m&eacute;todo /gestion/entrenamiento/prueba");
         return modelAndView;
         // model.addAttribute("message", "Spring 3 MVC Hello World");
         //return "hello";
-    }*/
+    }
     /*********************************************************************************************/
     
     /************************Seccion de gestion de entrenamiento*********************************/
@@ -220,5 +226,8 @@ public class ServiciosGestionDatos {
         // model.addAttribute("message", "Spring 3 MVC Hello World");
         //return "hello";
     }
+    
+    
+    
     
 }

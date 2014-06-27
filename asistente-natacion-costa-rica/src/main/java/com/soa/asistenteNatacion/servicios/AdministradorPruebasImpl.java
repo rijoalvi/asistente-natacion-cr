@@ -18,14 +18,15 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Joseiby Hernandez
  */
 
-@Service
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
+@Service("administradorPruebas")
+@Transactional
 public class AdministradorPruebasImpl implements AdministradorPruebas{
 
     @Autowired
     PruebaDao pruebaDao;
     
     @Override
+    @Transactional(readOnly = true)
     public void guardarPrueba(Prueba prueba) {
         pruebaDao.guardarPrueba(prueba);
     }

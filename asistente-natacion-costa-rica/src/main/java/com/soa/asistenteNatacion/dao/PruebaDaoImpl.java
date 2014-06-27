@@ -30,7 +30,17 @@ public class PruebaDaoImpl implements PruebaDao{
     
     @Override
     public void guardarPrueba(Prueba prueba) {
+       
+        LOGGER.info(sessionfactory.toString());
+        try {
+            sessionfactory.getCurrentSession();
+        }
+        catch(Exception e) {
+            //sessionfactory.openSession();
+            LOGGER.info("abri sesion");
+        }
         sessionfactory.openSession().saveOrUpdate(prueba);
+        LOGGER.info("NO MAMELUCO");
     }
     
     @Override

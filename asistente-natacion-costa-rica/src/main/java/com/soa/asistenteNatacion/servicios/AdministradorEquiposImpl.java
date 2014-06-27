@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Joseiby Hernandez
  */
 
-@Service
+@Service 
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
 public class AdministradorEquiposImpl implements AdministradorEquipos{
 

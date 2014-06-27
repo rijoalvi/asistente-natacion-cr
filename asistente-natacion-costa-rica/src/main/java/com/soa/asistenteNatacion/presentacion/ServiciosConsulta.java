@@ -6,7 +6,6 @@
 package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
-import com.soa.asistenteNatacion.servicios.Prueba;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +29,6 @@ import org.springframework.web.servlet.ModelAndView;
 public class ServiciosConsulta {
 
     private final static Logger LOGGER = Logger.getLogger(ServiciosConsulta.class.getName());
-    @Autowired
-    Prueba prueba;
 
     
     /************************Seccion de consulta de entrenamiento*********************************/
@@ -44,7 +41,6 @@ public class ServiciosConsulta {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
         headers.add("Access-Control-Allow-Origin", "*");
         MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
-        result.add("nombre", prueba.hola());
         result.add("id",  Integer.toString(entrenamiento.getId()));
 
         return new ResponseEntity(result, headers, HttpStatus.OK);
