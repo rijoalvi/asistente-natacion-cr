@@ -31,7 +31,16 @@ public class EntrenamientoDaoImpl implements EntrenamientoDao{
     
     @Override
     public void guardarEntrenamiento(Entrenamiento entrenamiento) {
+        LOGGER.info(sessionfactory.toString());
+        try {
+            sessionfactory.getCurrentSession();
+        }
+        catch(Exception e) {
+            //sessionfactory.openSession();
+            LOGGER.info("abri sesion");
+        }
         sessionfactory.openSession().saveOrUpdate(entrenamiento);
+        LOGGER.info("NO MAMELUCO");
     }
     
         @Override
