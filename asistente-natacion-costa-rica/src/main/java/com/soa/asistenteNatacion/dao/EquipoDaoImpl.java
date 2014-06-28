@@ -6,14 +6,13 @@
 
 package com.soa.asistenteNatacion.dao;
 import com.soa.asistenteNatacion.modelos.Equipo;
-import com.soa.asistenteNatacion.modelos.Usuario;
 import java.util.List;
 import java.util.logging.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
-import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -38,6 +37,16 @@ public class EquipoDaoImpl implements EquipoDao{
     @Override
     public void guardarEquipo(Equipo equipo) {
         sessionfactory.openSession().saveOrUpdate(equipo);
+    }
+    
+    @Override
+    public List<Equipo> obtenerEquipos(int idUsuario) {
+        List<Equipo> resp;
+        Criteria c = sessionfactory.openSession().createCriteria(Equipo.class);
+	c.add(Restrictions.eq("id_usuario",idUsuario));
+        resp = c.list();
+        System.out.println(resp.toArray().length);
+        return resp;
     }
 
 }
