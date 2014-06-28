@@ -6,6 +6,12 @@
 package com.soa.asistenteNatacion.presentacion;
 
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
+import com.soa.asistenteNatacion.modelos.Equipo;
+import com.soa.asistenteNatacion.modelosTransaccionales.DatosConsultaEquipo;
+import com.soa.asistenteNatacion.servicios.AdministradorEquipos;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +25,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.codehaus.jackson.JsonGenerationException;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.codehaus.jackson.map.ObjectMapper;
 
 /**
  *
@@ -29,6 +38,9 @@ import org.springframework.web.servlet.ModelAndView;
 public class ServiciosConsulta {
 
     private final static Logger LOGGER = Logger.getLogger(ServiciosConsulta.class.getName());
+    
+    @Autowired
+    private AdministradorEquipos administradorEquipos;
 
     
     /************************Seccion de consulta de entrenamiento*********************************/
@@ -89,4 +101,39 @@ public class ServiciosConsulta {
         // model.addAttribute("message", "Spring 3 MVC Hello World");
         //return "hello";
     }*/
+    
+    
+    
+    
+    /************************Seccion de consulta de equipo por idUsuario****************************/
+    @RequestMapping(value = "/equipos",
+                    method = RequestMethod.POST,
+                    headers = "Accept=application/json",
+                    produces = "application/json",
+                    consumes = "application/json")
+    public ResponseEntity<String> consultaEquiposIdUsuario(HttpServletRequest request, @RequestBody DatosConsultaEquipo datos) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Access-Control-Allow-Origin", "*");
+        MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
+        ObjectMapper mapper = new ObjectMapper();
+        List<Equipo> resp = administradorEquipos.obtenerEquipos(datos.getId_usuario());
+        String lista ="";
+        try {
+            lista = mapper.writeValueAsString(resp);
+        } catch (IOException ex) {
+            
+        }
+        return new ResponseEntity<String>(lista, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/equipos",
+                    method = RequestMethod.GET)
+    public ModelAndView descripcionConsultaNadadorPrueba(ModelMap model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("vista_consulta_equipos");
+        modelAndView.addObject("message", "Descripci&oacute;nes de c&oacute;mo funciona el m&eacute;todo /nadador/prueba");
+        return modelAndView;
+        // model.addAttribute("message", "Spring 3 MVC Hello World");
+        //return "hello";
+    }
 }

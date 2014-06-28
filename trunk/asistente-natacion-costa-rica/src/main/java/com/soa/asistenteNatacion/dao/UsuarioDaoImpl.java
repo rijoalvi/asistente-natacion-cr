@@ -26,23 +26,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class UsuarioDaoImpl implements UsuarioDao {
     
     private final static Logger LOGGER = Logger.getLogger(UsuarioDaoImpl.class.getName());
+    
     @Autowired
     private SessionFactory sessionfactory;
 
     @Override
     public void guardarUsuario(Usuario usuario) {
         LOGGER.info("antes de mameluquear");
-        LOGGER.info(sessionfactory.toString());
-        LOGGER.info("antes de mameluquear2");
         try {
             sessionfactory.getCurrentSession();
         }
         catch(Exception e) {
             //sessionfactory.openSession();
-            LOGGER.info("abri sesion");
         }
         sessionfactory.openSession().saveOrUpdate(usuario);
-        LOGGER.info("NO MAMELUCO");
     }
 
     @Override
@@ -53,7 +50,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
     }
     
     @Override
-    public Usuario obtenerUsuario(String usuario, String contrasena) {
+    public Usuario obtenerUsuarioLogin(String usuario, String contrasena) {
         Criteria c = sessionfactory.openSession().createCriteria(Usuario.class);
         if(usuario!=null){
 		c.add(Restrictions.eq("nombre_usuario",usuario));

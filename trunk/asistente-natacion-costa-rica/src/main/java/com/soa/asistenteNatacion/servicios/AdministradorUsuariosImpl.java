@@ -42,7 +42,7 @@ public class AdministradorUsuariosImpl implements AdministradorUsuarios{
     @Transactional(readOnly = false)
     public Usuario obtenerUsuario(String usuario, String contrasena) {
         Usuario resp = null;
-        resp =  usuarioDao.obtenerUsuario(usuario, contrasena);
+        resp =  usuarioDao.obtenerUsuarioLogin(usuario, contrasena);
         return resp;
     }
     

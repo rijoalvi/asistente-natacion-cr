@@ -34,4 +34,9 @@ public class AdministradorEquiposImpl implements AdministradorEquipos{
     public List<Equipo> obtenerEquipos() {
         return equipoDao.obtenerEquipos();
     }
+    
+    @Override
+    public List<Equipo> obtenerEquipos(int idUsuario) {
+        return equipoDao.obtenerEquipos(idUsuario);
+    }
 }

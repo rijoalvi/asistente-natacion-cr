@@ -17,4 +17,5 @@ public interface EquipoDao {
     
     public void guardarEquipo(Equipo equipo);
     public List<Equipo> obtenerEquipos();
+    public List<Equipo> obtenerEquipos(int idUsuario);
 }

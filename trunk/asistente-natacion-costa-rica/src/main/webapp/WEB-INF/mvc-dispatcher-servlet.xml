@@ -30,6 +30,9 @@
             <value>.jsp</value>
         </property>
     </bean>
+    <bean class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
+        <property name="extractValueFromSingleKeyModel" value="true" />
+    </bean>
 
     <mvc:resources mapping="/recursos/**" location="/recursos/" />
         
