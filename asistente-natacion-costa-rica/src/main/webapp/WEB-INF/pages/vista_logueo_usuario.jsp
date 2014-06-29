@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ricardo</title>
+        <title>${titulo}</title>
         <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
         <script src="/recursos/js/logueoUsuario.js"></script>
     </head>

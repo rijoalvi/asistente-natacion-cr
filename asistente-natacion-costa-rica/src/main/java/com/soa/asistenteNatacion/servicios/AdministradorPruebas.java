@@ -7,6 +7,7 @@
 package com.soa.asistenteNatacion.servicios;
 
 import com.soa.asistenteNatacion.modelos.Prueba;
+import java.util.Date;
 import java.util.List;
 /**
  *
@@ -15,5 +16,5 @@ import java.util.List;
 public interface AdministradorPruebas{
     public void guardarPrueba(Prueba entrenamiento);
     public List<Prueba> obtenerPruebas();
-
+    public List<Prueba> obtenerPruebas(int idEntrenamiento, Date fecha);
 }

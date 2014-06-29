@@ -16,4 +16,5 @@ public interface PruebaDao {
     
     public void guardarPrueba(Prueba prueba);
     public List<Prueba> obtenerPruebas();
+    public List<Prueba> obtenerPruebas(int idEntrenamiento);
 }

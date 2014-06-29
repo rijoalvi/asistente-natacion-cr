@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.Type;
 
 /**
  *
@@ -26,6 +27,7 @@ public class Entrenamiento {
     private int id_equipo;
     
     @Column(name = "fecha")
+    @Type(type="date")
     private Date fecha;
 
     public int getId() {
