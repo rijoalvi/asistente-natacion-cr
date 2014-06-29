@@ -9,8 +9,10 @@ package com.soa.asistenteNatacion.dao;
 import com.soa.asistenteNatacion.modelos.Prueba;
 import java.util.List;
 import java.util.logging.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -48,6 +50,14 @@ public class PruebaDaoImpl implements PruebaDao{
         @SuppressWarnings("unchecked")
         List<Prueba> lista = sessionfactory.openSession().createCriteria(Prueba.class).list();
         return lista;
+    }
+    
+    @Override
+    public List<Prueba> obtenerPruebas(int idEntrenamiento) {
+        Criteria c = sessionfactory.openSession().createCriteria(Prueba.class);
+        c.add(Restrictions.eq("id_entrenamiento", idEntrenamiento));
+        List<Prueba> resp = c.list();
+        return resp;
     }
 
 }

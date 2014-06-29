@@ -48,5 +48,4 @@ public class EquipoDaoImpl implements EquipoDao{
         System.out.println(resp.toArray().length);
         return resp;
     }
-
 }

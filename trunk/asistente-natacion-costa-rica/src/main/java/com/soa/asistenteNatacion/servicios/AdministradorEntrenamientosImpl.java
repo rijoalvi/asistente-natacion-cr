@@ -34,4 +34,9 @@ public class AdministradorEntrenamientosImpl implements AdministradorEntrenamien
     public List<Entrenamiento> obtenerEntrenamientos() {
         return entrenamientoDao.obtenerEntrenamientos();
     }
+    
+    @Override
+    public List<Entrenamiento> obtenerEntrenamientos(int idEquipo) {
+        return entrenamientoDao.obtenerEntrenamientos(idEquipo);
+    }
 }

@@ -15,5 +15,6 @@ import java.util.List;
 public interface AdministradorEntrenamientos{
     public void guardarEntrenamiento(Entrenamiento entrenamiento);
     public List<Entrenamiento> obtenerEntrenamientos();
+    public List<Entrenamiento> obtenerEntrenamientos(int idEquipo);
 
 }

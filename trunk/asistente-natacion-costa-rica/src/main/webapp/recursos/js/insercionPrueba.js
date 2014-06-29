@@ -1,9 +1,9 @@
 var data = {
     'id_entrenamiento': 1,
-    'distancia': 100,
-    'estilo': 1,
-    'consecutivo': 3,
-    'tipo': 'a'
+    'distancia': 200,
+    'estilo': 2,
+    'consecutivo': 6,
+    'tipo': 'calentamiento'
 };
 this.datos = {};
 $(document).ready(function() {

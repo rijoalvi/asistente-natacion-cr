@@ -6,8 +6,11 @@
 
 package com.soa.asistenteNatacion.servicios;
 
+import com.soa.asistenteNatacion.dao.EntrenamientoDao;
 import com.soa.asistenteNatacion.dao.PruebaDao;
+import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Prueba;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,9 @@ public class AdministradorPruebasImpl implements AdministradorPruebas{
     @Autowired
     PruebaDao pruebaDao;
     
+    @Autowired
+    EntrenamientoDao entrenamientoDao;
+    
     @Override
     @Transactional(readOnly = true)
     public void guardarPrueba(Prueba prueba) {
@@ -34,5 +40,15 @@ public class AdministradorPruebasImpl implements AdministradorPruebas{
     @Override
     public List<Prueba> obtenerPruebas() {
         return pruebaDao.obtenerPruebas();
+    }
+    
+    @Override
+    public List<Prueba> obtenerPruebas(int idEquipo, Date fecha) {
+        Entrenamiento entreno = entrenamientoDao.obtenerEntrenamientoFecha(idEquipo, fecha);
+        List<Prueba> resp = null;
+        if (entreno != null) {
+            resp = pruebaDao.obtenerPruebas(entreno.getId());
+        }
+        return resp;
     }
 }

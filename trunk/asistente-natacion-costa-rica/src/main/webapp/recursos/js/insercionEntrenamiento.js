@@ -1,6 +1,6 @@
 var data = {
     'id_equipo': 1,
-    'fecha': '2014-06-25'
+    'fecha': '2014-06-15'
 };
 this.datos = {};
 $(document).ready(function() {
