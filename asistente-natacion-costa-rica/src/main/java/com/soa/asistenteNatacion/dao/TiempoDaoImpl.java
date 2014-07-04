@@ -10,6 +10,7 @@ import com.soa.asistenteNatacion.modelos.Tiempo;
 
 import java.util.List;
 import java.util.logging.Logger;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,17 @@ public class TiempoDaoImpl implements TiempoDao{
     
     @Override
     public void guardarTiempo(Tiempo tiempo) {
-        sessionfactory.openSession().saveOrUpdate(tiempo);
+        Session s = sessionfactory.openSession();
+        s.saveOrUpdate(tiempo);
+        s.close();
     }
     
         @Override
     public List<Tiempo> obtenerTiempos() {
         @SuppressWarnings("unchecked")
-        List<Tiempo> lista = sessionfactory.openSession().createCriteria(Tiempo.class).list();
+        Session s = sessionfactory.openSession();
+        List<Tiempo> lista = s.createCriteria(Tiempo.class).list();
+        s.close();
         return lista;
     }
 

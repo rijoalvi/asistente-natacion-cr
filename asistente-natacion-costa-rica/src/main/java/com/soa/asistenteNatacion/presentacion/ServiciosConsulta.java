@@ -8,12 +8,14 @@ package com.soa.asistenteNatacion.presentacion;
 import com.soa.asistenteNatacion.modelos.Entrenamiento;
 import com.soa.asistenteNatacion.modelos.Equipo;
 import com.soa.asistenteNatacion.modelos.Prueba;
+import com.soa.asistenteNatacion.modelos.Tiempo;
 import com.soa.asistenteNatacion.modelosTransaccionales.DatosConsultaEntrenamiento;
 import com.soa.asistenteNatacion.modelosTransaccionales.DatosConsultaEquipo;
 import com.soa.asistenteNatacion.modelosTransaccionales.DatosConsultaPruebas;
 import com.soa.asistenteNatacion.servicios.AdministradorEntrenamientos;
 import com.soa.asistenteNatacion.servicios.AdministradorEquipos;
 import com.soa.asistenteNatacion.servicios.AdministradorPruebas;
+import com.soa.asistenteNatacion.servicios.AdministradorTiempos;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -54,6 +56,9 @@ public class ServiciosConsulta {
     
     @Autowired
     private AdministradorPruebas administradorPruebas;
+    
+     @Autowired
+    private AdministradorTiempos administradorTiempos;
 
     
     /************************Seccion de consulta de entrenamiento*********************************/
@@ -89,7 +94,7 @@ public class ServiciosConsulta {
         listaejemplo.add("{ id_equipo: 23,");
         listaejemplo.add("  fecha: 2014-06-21 }");
         
-        String titulo = "Consulta de Equipos";
+        String titulo = "Consulta de Pruebas";
         String descr1 = "para consultar la lista de pruebas que tiene un entrenamiento de una fecha espec&iacute;fica, es necesario enviar mediante POST un objeto con los siguientes elementos:";
         String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
         ModelAndView modelAndView = new ModelAndView();
@@ -182,6 +187,49 @@ public class ServiciosConsulta {
         
         String titulo = "Consulta de Entrenamientos";
         String descr1 = "para consultar la lista de entrenamientos que tiene un equipo, es necesario enviar mediante POST un objeto con los siguientes elementos:";
+        String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("vista_consulta_entrenamientos");
+        modelAndView.addObject("titulo", titulo);
+        modelAndView.addObject("descripcion1", descr1);
+        modelAndView.addObject("listaDescripcion", listaProps);
+        modelAndView.addObject("descripcion2", descr2);
+        modelAndView.addObject("listaEjemplos", listaejemplo);
+        
+        return modelAndView;
+    }
+    
+    @RequestMapping(value = "/tiempos",
+                    method = RequestMethod.POST,
+                    headers = "Accept=application/json",
+                    produces = "application/json",
+                    consumes = "application/json")
+    public ResponseEntity<String> consultaTiempos(HttpServletRequest request, @RequestBody DatosConsultaEntrenamiento datos) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<String, String>();
+        headers.add("Access-Control-Allow-Origin", "*");
+        MultiValueMap<String, String> result = new LinkedMultiValueMap<String, String>();
+        ObjectMapper mapper = new ObjectMapper();
+        List<Tiempo> resp = administradorTiempos.obtenerTiempos();
+        String lista ="";
+        try {
+            lista = mapper.writeValueAsString(resp);
+        } catch (IOException ex) {
+            
+        }
+        return new ResponseEntity<String>(lista, headers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/tiempos",
+                    method = RequestMethod.GET)
+    public ModelAndView descripcionConsultaTiempos(ModelMap model) {
+        List<String> listaProps = new ArrayList<String>();
+        listaProps.add("id_equipo");
+        
+        List<String> listaejemplo = new ArrayList<String>();
+        listaejemplo.add("{ id_equipo: 231 }");
+        
+        String titulo = "Consulta de Tiempos";
+        String descr1 = "para consultar la lista de Tiempos que tiene un equipo, es necesario enviar mediante POST un objeto con los siguientes elementos:";
         String descr2 = "Un ejemplo del objeto, utilizando javascript ser&iacute;a:\n";
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("vista_consulta_entrenamientos");
