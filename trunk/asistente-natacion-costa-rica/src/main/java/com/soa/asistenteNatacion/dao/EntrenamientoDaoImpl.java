@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.hibernate.criterion.Restrictions;
@@ -34,7 +35,6 @@ public class EntrenamientoDaoImpl implements EntrenamientoDao{
     
     @Override
     public void guardarEntrenamiento(Entrenamiento entrenamiento) {
-        LOGGER.info(sessionfactory.toString());
         try {
             sessionfactory.getCurrentSession();
         }
@@ -42,14 +42,17 @@ public class EntrenamientoDaoImpl implements EntrenamientoDao{
             //sessionfactory.openSession();
             LOGGER.info("abri sesion");
         }
-        sessionfactory.openSession().saveOrUpdate(entrenamiento);
-        LOGGER.info("NO MAMELUCO");
+        Session s = sessionfactory.openSession();
+        s.saveOrUpdate(entrenamiento);
+        s.close();
     }
     
     @Override
     public List<Entrenamiento> obtenerEntrenamientos() {
         @SuppressWarnings("unchecked")
-        List<Entrenamiento> listaEntrenamientos = sessionfactory.openSession().createCriteria(Entrenamiento.class).list();
+        Session s = sessionfactory.openSession();
+        List<Entrenamiento> listaEntrenamientos = s.createCriteria(Entrenamiento.class).list();
+        s.close();
         return listaEntrenamientos;
     }
     

@@ -35,6 +35,8 @@
     </bean>
 
     <mvc:resources mapping="/recursos/**" location="/recursos/" />
+    
+    <mvc:resources mapping="/aplicacion/**" location="/aplicacion/" />
         
     <mvc:annotation-driven />
  

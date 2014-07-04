@@ -1,13 +1,13 @@
 var data = {
-    'nombre_usuario': 'rijoalvi',
-    'contrasena': '88',
-    'nombre': 'Ricardo',
-    'apellidos': 'Alvarado Villalobos',
-    'email': 'rijoalvi@gmail.com',
+    'nombre_usuario': 'pacojimenez',
+    'contrasena': '26',
+    'nombre': 'Paco',
+    'apellidos': 'jimenez',
+    'email': 'paco@jimenez.com',
     'tipo': 1,
-    'edad': 15,
+    'edad': 25,
     'categoria': 3,
-    'especialidad': 2
+    'especialidad': 1
 };
 this.datos = {};
 

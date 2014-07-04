@@ -9,6 +9,7 @@ import com.soa.asistenteNatacion.modelos.Usuario;
 import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.common.util.impl.LoggerFactory;
 import org.hibernate.criterion.Expression;
@@ -32,26 +33,30 @@ public class UsuarioDaoImpl implements UsuarioDao {
 
     @Override
     public void guardarUsuario(Usuario usuario) {
-        LOGGER.info("antes de mameluquear");
         try {
             sessionfactory.getCurrentSession();
         }
         catch(Exception e) {
             //sessionfactory.openSession();
         }
-        sessionfactory.openSession().saveOrUpdate(usuario);
+        Session s = sessionfactory.openSession();
+        s.saveOrUpdate(usuario);
+        s.close();
     }
 
     @Override
     public List<Usuario> obtenerUsuarios() {
         @SuppressWarnings("unchecked")
-        List<Usuario> listaUsuarios = sessionfactory.openSession().createCriteria(Usuario.class).list();
+        Session s = sessionfactory.openSession();
+        List<Usuario> listaUsuarios = s.createCriteria(Usuario.class).list();
+        s.close();
         return listaUsuarios;
     }
     
     @Override
     public Usuario obtenerUsuarioLogin(String usuario, String contrasena) {
-        Criteria c = sessionfactory.openSession().createCriteria(Usuario.class);
+        Session s = sessionfactory.openSession();
+        Criteria c = s.createCriteria(Usuario.class);
         if(usuario!=null){
 		c.add(Restrictions.eq("nombre_usuario",usuario));
 	}
@@ -59,6 +64,7 @@ public class UsuarioDaoImpl implements UsuarioDao {
 		c.add(Restrictions.eq("contrasena",contrasena));
 	}
         Usuario usuarioResp = (Usuario) c.uniqueResult();
+        s.close();
         return usuarioResp;
     }
 }

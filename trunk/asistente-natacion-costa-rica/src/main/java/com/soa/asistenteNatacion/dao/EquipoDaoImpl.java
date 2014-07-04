@@ -9,6 +9,7 @@ import com.soa.asistenteNatacion.modelos.Equipo;
 import java.util.List;
 import java.util.logging.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,20 @@ public class EquipoDaoImpl implements EquipoDao{
 
     @Override
     public void guardarEquipo(Equipo equipo) {
-        sessionfactory.openSession().saveOrUpdate(equipo);
+        Session s = sessionfactory.openSession();
+        s.saveOrUpdate(equipo);
+        s.close();
     }
     
     @Override
     public List<Equipo> obtenerEquipos(int idUsuario) {
         List<Equipo> resp;
-        Criteria c = sessionfactory.openSession().createCriteria(Equipo.class);
+        Session s = sessionfactory.openSession();
+        Criteria c = s.createCriteria(Equipo.class);
 	c.add(Restrictions.eq("id_usuario",idUsuario));
         resp = c.list();
         System.out.println(resp.toArray().length);
+        s.close();
         return resp;
     }
 }
