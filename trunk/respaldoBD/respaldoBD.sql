@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `asistente_natacion_cr` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `asistente_natacion_cr`;
--- MySQL dump 10.13  Distrib 5.6.13, for osx10.6 (i386)
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
 --
--- Host: 127.0.0.1    Database: asistente_natacion_cr
+-- Host: localhost    Database: asistente_natacion_cr
 -- ------------------------------------------------------
--- Server version	5.6.19
+-- Server version	5.5.24-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -31,7 +31,7 @@ CREATE TABLE `entrenamiento` (
   PRIMARY KEY (`id`),
   KEY `id_equipo_idx` (`id_equipo`),
   CONSTRAINT `id_equipo` FOREIGN KEY (`id_equipo`) REFERENCES `equipo` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,6 +40,7 @@ CREATE TABLE `entrenamiento` (
 
 LOCK TABLES `entrenamiento` WRITE;
 /*!40000 ALTER TABLE `entrenamiento` DISABLE KEYS */;
+INSERT INTO `entrenamiento` VALUES (1,1,'2014-06-24'),(2,1,'2014-05-11'),(3,1,'2014-05-20'),(4,1,'2014-04-13'),(5,2,'2014-06-30'),(6,2,'2014-06-20'),(7,2,'2014-06-15'),(8,2,'2014-06-12'),(9,2,'2014-06-05'),(10,1,'2014-06-14');
 /*!40000 ALTER TABLE `entrenamiento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +56,7 @@ CREATE TABLE `equipo` (
   `nombre` varchar(45) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +65,7 @@ CREATE TABLE `equipo` (
 
 LOCK TABLES `equipo` WRITE;
 /*!40000 ALTER TABLE `equipo` DISABLE KEYS */;
-INSERT INTO `equipo` VALUES (2,'ANAHE',1),(5,'ANAHE',1);
+INSERT INTO `equipo` VALUES (1,'ANAHE',1),(2,'ASGUANA',2),(3,'ANAHE',1),(4,'ANAHE',1);
 /*!40000 ALTER TABLE `equipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,7 +86,7 @@ CREATE TABLE `prueba` (
   PRIMARY KEY (`id`),
   KEY `prueba_entrenamiento_idx` (`id_entrenamiento`),
   CONSTRAINT `prueba_entrenamiento` FOREIGN KEY (`id_entrenamiento`) REFERENCES `entrenamiento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +95,7 @@ CREATE TABLE `prueba` (
 
 LOCK TABLES `prueba` WRITE;
 /*!40000 ALTER TABLE `prueba` DISABLE KEYS */;
+INSERT INTO `prueba` VALUES (1,1,200,1,1,'Calentamiento'),(2,1,100,1,2,'Tecnica'),(3,1,100,1,3,'Tecnica'),(4,1,800,2,4,'Fondo'),(5,5,600,2,1,'Calentamiento'),(6,5,300,3,2,'Tecnica'),(7,5,500,1,3,'Velocidad'),(8,5,1500,2,4,'Fondo'),(9,6,500,1,1,'Calentamiento'),(10,6,200,3,2,'Velocidad'),(11,7,400,2,1,'Calentamiento'),(12,8,900,1,2,'Fondo'),(13,1,200,2,6,'calentamiento');
 /*!40000 ALTER TABLE `prueba` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +118,7 @@ CREATE TABLE `tiempo` (
   KEY `tiempo_nadador_idx` (`id_usuario`),
   CONSTRAINT `tiempo_prueba` FOREIGN KEY (`id_prueba`) REFERENCES `prueba` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tiempo_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +127,7 @@ CREATE TABLE `tiempo` (
 
 LOCK TABLES `tiempo` WRITE;
 /*!40000 ALTER TABLE `tiempo` DISABLE KEYS */;
+INSERT INTO `tiempo` VALUES (1,7,2,'0000-00-00 00:05:30',500,1),(2,7,1,'0000-00-00 00:04:45',500,1);
 /*!40000 ALTER TABLE `tiempo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,14 +145,14 @@ CREATE TABLE `usuario` (
   `apellidos` varchar(45) NOT NULL,
   `email` varchar(45) DEFAULT NULL,
   `tipo` int(11) DEFAULT NULL,
+  `id_nadador` int(11) DEFAULT NULL,
   `nombre` varchar(45) NOT NULL,
   `edad` int(11) DEFAULT NULL,
   `categoria` int(11) DEFAULT NULL,
   `especialidad` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nombre_usuario_UNIQUE` (`nombre_usuario`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `usuario_nadador_idx` (`id_nadador`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -158,7 +161,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'rijoalvi','88','Alvarado Villalobos','rijoalvi@gmail.com',1,'Ricardo',15,3,2);
+INSERT INTO `usuario` VALUES (1,'rijoalvi','88','Alvarado Villalobos','rijoalvi@gmail.com',1,NULL,'Ricardo',15,3,2),(2,'pacojimenez','26','jimenez','paco@jimenez.com',1,NULL,'Paco',25,3,1);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -171,4 +174,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-27  0:42:05
+-- Dump completed on 2014-07-04 11:20:21
